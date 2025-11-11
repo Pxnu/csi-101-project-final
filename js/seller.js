@@ -164,7 +164,7 @@ function handleSubmitAll() {
     alert(`✅ วางขายสินค้า ${newProductsAdded} รายการเรียบร้อยแล้ว!`);
 
     // ย้ายไปหน้าสินค้า
-    window.location.href = "./Products.html";
+    window.location.href = "/products.html.html";
   } catch (err) {
     console.error("Error saving products:", err);
     alert("เกิดข้อผิดพลาดในการบันทึกสินค้า");
