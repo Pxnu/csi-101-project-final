@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       alert("ต้องการออกจากระบบใช่หรือไม่");
-      window.location.href = "./Login.html";
+      window.location.href = "/login.html";
     });
   }
 
