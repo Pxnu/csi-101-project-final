@@ -10,10 +10,10 @@ body {
   height: 100vh;
   width: 100%;
   place-items: center;
-  background: linear-gradient(to right, #E45A92 0%, #E45A92 100%);
+  background: linear-gradient(to right, #e45a92 0%, #e45a92 100%);
 }
 ::selection {
-  background: #E45A92;
+  background: #e45a92;
 }
 .container {
   background: #fff;
@@ -37,7 +37,7 @@ body {
   left: 0px;
   bottom: 3px;
   border-radius: 5px;
-  background: linear-gradient(to right, #E45A92 0%, #E45A92 100%);
+  background: linear-gradient(to right, #e45a92 0%, #e45a92 100%);
 }
 .container form .input-box {
   width: 100%;
@@ -66,7 +66,7 @@ body {
   position: absolute;
   height: 2px;
   width: 100%;
-  background: #E45A92;
+  background: #e45a92;
   left: 0;
   bottom: 0;
   transform: scaleX(0);
@@ -82,14 +82,14 @@ body {
   margin: 40px 0 20px 0;
 }
 .container .input-box input[type="submit"] {
-  background: #E45A92;
+  background: #e45a92;
   font-size: 18px;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
 }
 .container .input-box input[type="submit"]:hover {
-  background: linear-gradient(to left, #E45A92 0%, #E45A92 100%);
+  background: linear-gradient(to left, #e45a92 0%, #e45a92 100%);
 }
 
 .signUp {

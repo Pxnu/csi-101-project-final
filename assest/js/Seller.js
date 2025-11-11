@@ -86,9 +86,9 @@ function createNewProductForm() {
         // e.target.result คือสตริง Base64 ของรูปภาพ
         preview.innerHTML = `<img src="${e.target.result}" alt="ภาพสินค้า">`;
         uploadLabel.classList.add("has-image"); // ⭐️ เพิ่มคลาสเพื่อซ่อนข้อความ
-        
+
         // ⭐️ [สำคัญ] บันทึก Base64 ไว้ใน data-* attribute
-        card.dataset.imageBase64 = e.target.result; 
+        card.dataset.imageBase64 = e.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -103,7 +103,7 @@ function createNewProductForm() {
  */
 function handleSubmitAll() {
   const allCards = document.querySelectorAll(".product-card");
-  
+
   if (allCards.length === 0) {
     alert("คุณยังไม่ได้เพิ่มสินค้าใดๆ");
     return;
@@ -111,11 +111,11 @@ function handleSubmitAll() {
 
   // (allProducts และ PRODUCTS_KEY มาจาก Data.js)
   let currentProducts = allProducts;
-  let myProductIDs = JSON.parse(localStorage.getItem('myProductIDs')) || [];
+  let myProductIDs = JSON.parse(localStorage.getItem("myProductIDs")) || [];
   let newProductsAdded = 0;
   let hasError = false;
 
-  allCards.forEach(card => {
+  allCards.forEach((card) => {
     // ลบ class error เก่าออกก่อน
     card.classList.remove("error");
 
@@ -136,7 +136,7 @@ function handleSubmitAll() {
       ID: new Date().getTime() + Math.random(), // ⭐️ ทำให้ ID ไม่ซ้ำกัน
       name: name,
       price: parseFloat(price),
-      img: imageBase64 
+      img: imageBase64,
     };
 
     // --- 3. เพิ่มเข้า List ---
@@ -150,22 +150,21 @@ function handleSubmitAll() {
     alert("⚠️ เกิดข้อผิดพลาด! กรุณากรอกข้อมูลในช่อง (สีแดง) ให้ครบถ้วน");
     return;
   }
-  
+
   if (newProductsAdded === 0) {
-     alert("ไม่พบสินค้าใหม่ที่จะเพิ่ม");
-     return;
+    alert("ไม่พบสินค้าใหม่ที่จะเพิ่ม");
+    return;
   }
 
   // --- 5. บันทึกลง Storage ---
   try {
     localStorage.setItem(PRODUCTS_KEY, JSON.stringify(currentProducts));
-    localStorage.setItem('myProductIDs', JSON.stringify(myProductIDs));
+    localStorage.setItem("myProductIDs", JSON.stringify(myProductIDs));
 
     alert(`✅ วางขายสินค้า ${newProductsAdded} รายการเรียบร้อยแล้ว!`);
-    
-    // ย้ายไปหน้าสินค้า
-    window.location.href = "/page/Products.html";
 
+    // ย้ายไปหน้าสินค้า
+    window.location.href = "./Products.html";
   } catch (err) {
     console.error("Error saving products:", err);
     alert("เกิดข้อผิดพลาดในการบันทึกสินค้า");

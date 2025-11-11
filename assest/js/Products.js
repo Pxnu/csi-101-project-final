@@ -11,10 +11,10 @@ function renderAllProducts(productsToRender) {
   if (productsToRender.length === 0) {
     // ตรวจสอบว่า 'สินค้าทั้งหมด' (allProducts) ว่างเปล่าหรือไม่
     if (allProducts.length === 0) {
-        container.innerHTML = "<h2>ไม่พบสินค้าในขณะนี้...</h2>";
+      container.innerHTML = "<h2>ไม่พบสินค้าในขณะนี้...</h2>";
     } else {
-        // ถ้า allProducts มีของ แต่ productsToRender ไม่มี = ไม่พบผลการค้นหา
-        container.innerHTML = "<h2>ไม่พบสินค้าที่คุณค้นหา...</h2>";
+      // ถ้า allProducts มีของ แต่ productsToRender ไม่มี = ไม่พบผลการค้นหา
+      container.innerHTML = "<h2>ไม่พบสินค้าที่คุณค้นหา...</h2>";
     }
     container.style.display = "block";
     return;
@@ -66,5 +66,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAllProducts(productsToShow);
   initializeSearch();
   updateCart();
-  updateFavCount(); 
+  updateFavCount();
 });

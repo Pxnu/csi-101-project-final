@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorite</title>
-    
-    <link rel="stylesheet" href="../assest/css/global.css">
+    <title>SPU ชั้น 2</title>
+
+    <link rel="stylesheet" href="../assest/css/Global.css">
     <link rel="stylesheet" href="../assest/css/Favorite.css">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <nav>
@@ -25,12 +25,12 @@
             <ul class="menu_2">
                 <li><a id="cart-icon" href="#"><i class="fa-solid fa-cart-shopping"></i>ตะกร้าสินค้า<span id="cart-count">0</span></a></li>
                 <li><a href="./Favorite.html"><i id="favPage" class="fa-solid fa-heart"></i>ถูกใจ<span id="fav-count">0</span></a></li>
-                <li class="nav-user-menu">
+                <li class="nav-user-menu"> 
                     <a href="./Login.html" id="auth-link">
-                        <i class="fa-solid fa-circle-user"></i>ล็อคอิน
+                        <i class="fa-solid fa-user-check"></i> Phanu
                     </a>
                     <ul class="dropdown-menu" id="user-dropdown">
-                        <li><a href="./Seller.html"><i class="fa-solid fa-store"></i> สำหรับผู้ขาย</a></li>
+                        <li><a href="./Saller.html"><i class="fa-solid fa-store"></i> สำหรับผู้ขาย</a></li>
                         <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a></li>
                     </ul>
                 </li>
@@ -48,7 +48,7 @@
                 <div class="footer">
                     <p id="total-price">รวมทั้งหมด: 0 บาท</p>
                     <div class="btn">
-                        <button class="clear" type="button">ลบทั้งหมด</button>
+                        <button class="clear" onclick="clearCart()" type="button">ลบทั้งหมด</button>
                         <button class="submit" type="button" onclick="messengerBox()">ติดต่อผู้ขาย</button>
                     </div>
                 </div>

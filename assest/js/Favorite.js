@@ -4,12 +4,12 @@ const emptyText = document.getElementById("emptytext");
 
 const closeChatBtnFav = document.getElementById("closeChatBtn");
 if (closeChatBtnFav) {
-    closeChatBtnFav.addEventListener("click", messengerClose); 
+  closeChatBtnFav.addEventListener("click", messengerClose);
 }
 
 function loadFavoritesItem() {
   try {
-    const raw = localStorage.getItem(SAMPLE_KEY); 
+    const raw = localStorage.getItem(SAMPLE_KEY);
     if (!raw) {
       favorites = [];
       return;
@@ -29,18 +29,17 @@ function loadFavoritesItem() {
 function saveFavoritesItem() {
   try {
     localStorage.setItem(SAMPLE_KEY, JSON.stringify(favorites));
-  } catch (err)
- {
+  } catch (err) {
     console.error("saveFavoritesItem_Error:", err);
   }
 }
 
 function createCardFavoritesItem(item) {
-  const card = document.createElement("div"); 
-  card.className = "item"; 
+  const card = document.createElement("div");
+  card.className = "item";
   card.setAttribute("data-id", item.ID);
 
-  const currentFavorites = loadFavorites(); 
+  const currentFavorites = loadFavorites();
   const isFav = currentFavorites.some((f) => f.ID === item.ID);
 
   card.innerHTML = `
@@ -50,7 +49,9 @@ function createCardFavoritesItem(item) {
             <span>Username</span>
         </a>
         <div class="actions">
-            <i class="fa-solid fa-heart fav ${isFav ? "is-favorited" : ""}" data-id="${item.ID}"></i>
+            <i class="fa-solid fa-heart fav ${
+              isFav ? "is-favorited" : ""
+            }" data-id="${item.ID}"></i>
             <i class="fa-solid fa-ellipsis options"></i>
         </div>
     </div>
@@ -67,58 +68,60 @@ function createCardFavoritesItem(item) {
 
   const favIcon = card.querySelector(".fav");
   favIcon.addEventListener("click", () => {
-    toggleFavorite(item, favIcon); 
-    loadFavoritesItem();           
-    renderFavoritesItem();         
+    toggleFavorite(item, favIcon);
+    loadFavoritesItem();
+    renderFavoritesItem();
   });
 
   const addToCartBtn = card.querySelector(".add");
   addToCartBtn.addEventListener("click", () => addToCart(item));
 
   const buyBtn = card.querySelector(".buy");
-  buyBtn.addEventListener('click', messengerBox);
-  
+  buyBtn.addEventListener("click", messengerBox);
+
   const removeBtn = card.querySelector("[data-action='remove']");
-  removeBtn.addEventListener("click", () => removeItemWithAnimations(item.ID, card));
+  removeBtn.addEventListener("click", () =>
+    removeItemWithAnimations(item.ID, card)
+  );
 
   return card;
 }
 
 function renderFavoritesItem() {
-  if (!container) return; 
+  if (!container) return;
   container.innerHTML = "";
 
   if (!favorites || favorites.length === 0) {
-    if(emptyText) emptyText.textContent = "⚠️ยังไม่มีสินค้าที่คุณถูกใจ⚠️";
+    if (emptyText) emptyText.textContent = "⚠️ยังไม่มีสินค้าที่คุณถูกใจ⚠️";
     return;
   } else {
-    if(emptyText) emptyText.textContent = "";
+    if (emptyText) emptyText.textContent = "";
   }
 
   const fragment = document.createDocumentFragment();
-  favorites.forEach(item => {
+  favorites.forEach((item) => {
     fragment.appendChild(createCardFavoritesItem(item));
   });
   container.appendChild(fragment);
 }
 
 function removeFavoriteById(id) {
-  favorites = favorites.filter(item => item.ID !== id);
+  favorites = favorites.filter((item) => item.ID !== id);
   saveFavoritesItem();
 }
 
 function removeItemWithAnimations(id, card) {
   card.classList.add("removing");
   setTimeout(() => {
-    removeFavoriteById(id); 
-    renderFavoritesItem();  
-    updateFavCount();       
+    removeFavoriteById(id);
+    renderFavoritesItem();
+    updateFavCount();
   }, 300);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   loadFavoritesItem();
   renderFavoritesItem();
-  updateCart(); 
-  updateFavCount(); 
+  updateCart();
+  updateFavCount();
 });

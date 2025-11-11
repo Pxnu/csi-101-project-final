@@ -35,10 +35,10 @@ header {
     /* ⭐️ [อัปเดต] เปลี่ยน layout ให้เป็น grid เหมือนหน้า Products */
     #fav_container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       margin-top: 2rem;
       gap: 2rem;
-      justify-items: center; 
+      justify-items: center;
     }
 
     /* ⭐️ [ลบ] สไตล์ .item, .item h3, .price, .btn เก่าออก */
@@ -60,13 +60,12 @@ header {
       transition: background-color 0.2s ease;
 
       flex: 1; /* ⭐️ กลับไปใช้ flex: 1 */
-      text-align: center; 
-    }
-    
-    .item .button-group .remove:hover {
-        background-color: #e25757;
+      text-align: center;
     }
 
+    .item .button-group .remove:hover {
+      background-color: #e25757;
+    }
 
     /* (โค้ดส่วน logo SPU ด้านล่างยังเหมือนเดิม) */
     .img {

@@ -1,9 +1,9 @@
 function renderNewProducts() {
-  const favorites = loadFavorites(); 
+  const favorites = loadFavorites();
   const container = document.getElementById("new_product_container");
   if (!container) return;
   container.innerHTML = "";
-  
+
   const newProducts = allProducts.slice(0, 6);
 
   // --- ⭐️ [เพิ่มใหม่] ตรวจสอบว่ามีสินค้าหรือไม่ ---
@@ -18,7 +18,7 @@ function renderNewProducts() {
   container.style.display = "grid"; // กลับเป็น grid ถ้ามีสินค้า
   const fragment = document.createDocumentFragment();
   newProducts.forEach((item) => {
-    fragment.appendChild(createProductCard(item, favorites)); 
+    fragment.appendChild(createProductCard(item, favorites));
   });
   container.appendChild(fragment);
 }
@@ -42,7 +42,7 @@ function handleSearchRedirect() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderNewProducts();
-  updateCart(); 
-  updateFavCount(); 
+  updateCart();
+  updateFavCount();
   handleSearchRedirect();
 });

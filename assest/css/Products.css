@@ -8,24 +8,24 @@ header {
   .container {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 1.25rem; 
+    padding: 1.25rem;
 
     .title {
       margin: 1rem 0;
-      display: inline-block; 
-      text-align: left; 
+      display: inline-block;
+      text-align: left;
 
       h2 {
         border-bottom: 2px solid #000;
       }
     }
-    
+
     .product-items {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       margin-top: 2rem;
       gap: 2rem;
-      justify-items: center; 
+      justify-items: center;
     }
   }
 }

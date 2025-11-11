@@ -55,7 +55,7 @@ nav .container {
   background: #ffffff;
   padding: 20px 25px;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   margin-bottom: 20px;
   position: relative;
   border: 1px solid transparent; /* สำหรับ error state */
@@ -104,7 +104,7 @@ textarea {
   border: 1px solid var(--border-color);
   font-size: 16px;
   font-family: "Prompt", sans-serif;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -126,7 +126,7 @@ textarea {
   gap: 15px;
 }
 .form-row .form-group {
-  flex: 1; 
+  flex: 1;
 }
 
 /* ⭐️ สไตล์ปุ่มอัปโหลดไฟล์ใหม่ */
@@ -178,7 +178,6 @@ textarea {
 .image-upload-label.has-image span {
   display: none;
 }
-
 
 /* ⭐️ [ใหม่] สไตล์ปุ่มควบคุมด้านล่าง */
 .action-buttons {

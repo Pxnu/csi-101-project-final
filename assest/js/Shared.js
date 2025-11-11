@@ -2,32 +2,32 @@
   [Mockup] Dropdown Menu Logic
 ============================================== */
 document.addEventListener("DOMContentLoaded", () => {
-    const authLink = document.getElementById("auth-link");
-    const userDropdown = document.getElementById("user-dropdown");
-    const logoutBtn = document.getElementById("logout-btn");
+  const authLink = document.getElementById("auth-link");
+  const userDropdown = document.getElementById("user-dropdown");
+  const logoutBtn = document.getElementById("logout-btn");
 
-    if (authLink) {
-        authLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            if (userDropdown) {
-                userDropdown.classList.toggle("show");
-            }
-        });
-    }
-
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            alert("ต้องการออกจากระบบใช่หรือไม่");
-            window.location.href='/page/Login.html'
-        });
-    }
-
-    window.addEventListener("click", (e) => {
-      if (userDropdown && !e.target.closest('.nav-user-menu')) {
-        userDropdown.classList.remove("show");
+  if (authLink) {
+    authLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (userDropdown) {
+        userDropdown.classList.toggle("show");
       }
     });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("ต้องการออกจากระบบใช่หรือไม่");
+      window.location.href = "./Login.html";
+    });
+  }
+
+  window.addEventListener("click", (e) => {
+    if (userDropdown && !e.target.closest(".nav-user-menu")) {
+      userDropdown.classList.remove("show");
+    }
+  });
 });
 
 /* ==============================================
@@ -91,7 +91,7 @@ if (chatInput) {
 ============================================== */
 function loadFavorites() {
   try {
-    const raw = localStorage.getItem(SAMPLE_KEY); 
+    const raw = localStorage.getItem(SAMPLE_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
@@ -118,27 +118,27 @@ function formatPrice(price) {
 function toggleFavorite(item, icon) {
   let favorites = loadFavorites();
   const index = favorites.findIndex((f) => f.ID === item.ID);
-  
-  let isFavoritedNow = false; 
+
+  let isFavoritedNow = false;
 
   if (index !== -1) {
     favorites.splice(index, 1);
     showTextBox(`ลบ "${escapeHtml(item.name)}" ออกจากที่ถูกใจ`);
-    isFavoritedNow = false; 
+    isFavoritedNow = false;
   } else {
     favorites.push(item);
     showTextBox(`✅ เพิ่ม "${escapeHtml(item.name)}" ในที่ถูกใจ`);
-    isFavoritedNow = true; 
+    isFavoritedNow = true;
   }
 
   saveFavorites(favorites);
-  updateFavCount(); 
+  updateFavCount();
 
   const allIconsForThisItem = document.querySelectorAll(
     `.fav[data-id="${item.ID}"]`
   );
 
-  allIconsForThisItem.forEach(ic => {
+  allIconsForThisItem.forEach((ic) => {
     if (isFavoritedNow) {
       ic.classList.add("is-favorited");
     } else {
@@ -152,10 +152,10 @@ function toggleFavorite(item, icon) {
 ============================================== */
 function updateFavCount() {
   const favCountElement = document.getElementById("fav-count");
-  if (!favCountElement) return; 
+  if (!favCountElement) return;
 
-  const favorites = loadFavorites(); 
-  const totalCount = favorites.length; 
+  const favorites = loadFavorites();
+  const totalCount = favorites.length;
 
   if (totalCount > 0) {
     favCountElement.style.display = "inline-block";
@@ -164,7 +164,6 @@ function updateFavCount() {
     favCountElement.style.display = "none";
   }
 }
-
 
 /* ==============================================
   ส่วนตะกร้าสินค้า
@@ -183,14 +182,15 @@ if (clearCartButton) {
 
 function loadCart() {
   try {
-    const rawCart = localStorage.getItem(CART_KEY); 
+    const rawCart = localStorage.getItem(CART_KEY);
     return rawCart ? JSON.parse(rawCart) : [];
   } catch {
     return [];
   }
 }
 
-function saveCart(cartData) { // ⭐️ [แก้ไข] เพิ่มพารามิเตอร์
+function saveCart(cartData) {
+  // ⭐️ [แก้ไข] เพิ่มพารามิเตอร์
   localStorage.setItem(CART_KEY, JSON.stringify(cartData));
 }
 
@@ -222,8 +222,8 @@ function addToCart(item) {
 }
 
 function updateCart() {
-  if (!cartItemsList) return; 
-  
+  if (!cartItemsList) return;
+
   cartItemsList.innerHTML = "";
   let totalPrice = 0;
   let totalCount = 0;
@@ -354,44 +354,44 @@ if (cartOverlay) {
   });
 }
 
-
 /* ==============================================
   ⭐️ [อัปเดต] ฟังก์ชันลบสินค้า
 ============================================== */
 function handleDeleteProduct(item) {
-    if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบสินค้า "${item.name}"?`)) {
-        return;
-    }
+  if (!confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบสินค้า "${item.name}"?`)) {
+    return;
+  }
 
-    try {
-        // 1. ลบออกจากรายการสินค้าหลัก
-        let currentProducts = allProducts.filter(p => p.ID !== item.ID);
-        localStorage.setItem(PRODUCTS_KEY, JSON.stringify(currentProducts));
+  try {
+    // 1. ลบออกจากรายการสินค้าหลัก
+    let currentProducts = allProducts.filter((p) => p.ID !== item.ID);
+    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(currentProducts));
 
-        // 2. ลบออกจากรายการ ID "สินค้าของเรา"
-        let myProductIDs = JSON.parse(localStorage.getItem('myProductIDs')) || [];
-        myProductIDs = myProductIDs.filter(id => id !== item.ID);
-        localStorage.setItem('myProductIDs', JSON.stringify(myProductIDs));
+    // 2. ลบออกจากรายการ ID "สินค้าของเรา"
+    let myProductIDs = JSON.parse(localStorage.getItem("myProductIDs")) || [];
+    myProductIDs = myProductIDs.filter((id) => id !== item.ID);
+    localStorage.setItem("myProductIDs", JSON.stringify(myProductIDs));
 
-        // 3. ⭐️ [ใหม่] ลบออกจากตะกร้าสินค้า (เช็คด้วยชื่อ)
-        let currentCart = loadCart();
-        currentCart = currentCart.filter(cartItem => cartItem.name !== item.name);
-        saveCart(currentCart); // ส่งตัวแปรที่อัปเดตแล้วเข้าไป
+    // 3. ⭐️ [ใหม่] ลบออกจากตะกร้าสินค้า (เช็คด้วยชื่อ)
+    let currentCart = loadCart();
+    currentCart = currentCart.filter((cartItem) => cartItem.name !== item.name);
+    saveCart(currentCart); // ส่งตัวแปรที่อัปเดตแล้วเข้าไป
 
-        // 4. ⭐️ [ใหม่] ลบออกจาก "ถูกใจ" (เช็คด้วย ID)
-        let currentFavorites = loadFavorites();
-        currentFavorites = currentFavorites.filter(favItem => favItem.ID !== item.ID);
-        saveFavorites(currentFavorites); // ส่งตัวแปรที่อัปเดตแล้วเข้าไป
+    // 4. ⭐️ [ใหม่] ลบออกจาก "ถูกใจ" (เช็คด้วย ID)
+    let currentFavorites = loadFavorites();
+    currentFavorites = currentFavorites.filter(
+      (favItem) => favItem.ID !== item.ID
+    );
+    saveFavorites(currentFavorites); // ส่งตัวแปรที่อัปเดตแล้วเข้าไป
 
-        // 5. แจ้งเตือนและรีเฟรชหน้า
-        alert("ลบสินค้าเรียบร้อยแล้ว");
-        window.location.reload(); 
-    } catch (err) {
-        console.error("Error deleting product:", err);
-        alert("เกิดข้อผิดพลาดในการลบสินค้า");
-    }
+    // 5. แจ้งเตือนและรีเฟรชหน้า
+    alert("ลบสินค้าเรียบร้อยแล้ว");
+    window.location.reload();
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    alert("เกิดข้อผิดพลาดในการลบสินค้า");
+  }
 }
-
 
 /* ==============================================
   ส่วนสร้างการ์ดสินค้า (อัปเดต)
@@ -399,12 +399,12 @@ function handleDeleteProduct(item) {
 function createProductCard(item, favorites) {
   const isFav = favorites.some((f) => f.ID === item.ID);
 
-  const myProductIDs = JSON.parse(localStorage.getItem('myProductIDs')) || [];
+  const myProductIDs = JSON.parse(localStorage.getItem("myProductIDs")) || [];
   const isMyProduct = myProductIDs.includes(item.ID);
-  
-  const deleteButtonHTML = isMyProduct 
-      ? `<i class="fa-solid fa-trash delete-btn" title="ลบสินค้าของคุณ"></i>` 
-      : '';
+
+  const deleteButtonHTML = isMyProduct
+    ? `<i class="fa-solid fa-trash delete-btn" title="ลบสินค้าของคุณ"></i>`
+    : "";
 
   const card = document.createElement("div");
   card.className = "item";
@@ -416,7 +416,9 @@ function createProductCard(item, favorites) {
         </a>
         <div class="actions">
             ${deleteButtonHTML} 
-            <i class="fa-solid fa-heart fav ${isFav ? "is-favorited" : ""}" data-id="${item.ID}"></i>
+            <i class="fa-solid fa-heart fav ${
+              isFav ? "is-favorited" : ""
+            }" data-id="${item.ID}"></i>
             <i class="fa-solid fa-ellipsis options"></i>
         </div>
     </div>
@@ -437,11 +439,11 @@ function createProductCard(item, favorites) {
   buyBtn.addEventListener("click", messengerBox);
 
   if (isMyProduct) {
-      const deleteBtn = card.querySelector(".delete-btn");
-      deleteBtn.addEventListener("click", (e) => {
-          e.stopPropagation(); 
-          handleDeleteProduct(item);
-      });
+    const deleteBtn = card.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      handleDeleteProduct(item);
+    });
   }
 
   return card;
