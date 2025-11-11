@@ -1,0 +1,651 @@
+:root {
+  --primary-color: #e45a92;
+  --secondary-color: #f49bab;
+  --primary-size: 18px;
+  --secondary-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f5f5f5; 
+  position: relative;
+}
+
+/* ==============================================
+  ส่วน Navigation Bar
+  ==============================================
+*/
+nav {
+  background-color: var(--primary-color);
+}
+
+nav .container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .menu {
+  display: flex;
+}
+
+nav .menu li {
+  margin-right: 2rem;
+}
+
+nav .menu li a {
+  position: relative;
+  color: #ffff;
+  font-weight: bold;
+  font-size: var(--primary-size);
+}
+
+nav .menu li a::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: #ffff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+nav .menu li a:hover::after {
+  transform: scaleX(1);
+}
+
+nav .menu li span {
+  color: #ffff;
+  padding: 0.625rem 0;
+  border-bottom: 2px solid #ffff;
+}
+
+nav .menu li span i[class="fa-solid fa-magnifying-glass"] {
+  font-size: var(--primary-size);
+  margin-right: 0.625rem;
+}
+
+nav .menu li span input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #ffff;
+  width: 100px;
+  font-size: var(--primary-size);
+  font-weight: 500;
+}
+
+nav .menu li span input::placeholder {
+  color: #ffff;
+  font-size: var(--primary-size);
+}
+
+nav .menu_2 {
+  display: flex;
+}
+
+nav .menu_2 li {
+  margin-right: 2rem;
+}
+
+nav .menu_2 li a {
+  position: relative;
+  color: #ffff;
+  font-weight: bold;
+  font-size: var(--primary-size);
+}
+
+nav .menu_2 li a i[class="fa-solid fa-circle-user"],
+nav .menu_2 li a i[class="fa-solid fa-cart-shopping"],
+nav .menu_2 li a i[class="fa-solid fa-heart fav"] {
+  font-size: var(--primary-size);
+}
+
+nav .menu_2 li a i[class="fa-solid fa-magnifying-glass"],
+nav .menu_2 li a i[class="fa-solid fa-circle-user"],
+nav .menu_2 li a i[class="fa-solid fa-cart-shopping"],
+nav .menu_2 li a i[class="fa-solid fa-heart"] {
+  margin-right: 0.625rem;
+}
+
+nav .menu_2 li a #cart-count, 
+nav .menu_2 li a #fav-count {
+  position: absolute;
+  top: -8px;    
+  left: 14px;   
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  display: none; 
+}
+
+/* Overlay มืด */
+nav #cart-overlay {
+  display: none; /* เริ่มซ่อน */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* อยู่ด้านหลังตะกร้า */
+}
+
+/* ตะกร้าสินค้าแบบ popup */
+nav .cart-dropdown {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000; /* อยู่เหนือ overlay */
+  width: 80%;
+  max-width: 1000px;
+  min-height: 400px;
+  border-radius: 12px;
+  overflow-y: auto;
+}
+
+nav .cart-dropdown .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--primary-size);
+  border-bottom: 1px solid #ddd;
+}
+
+nav .cart-dropdown .header p {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+nav .cart-dropdown .header button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: var(--primary-size);
+  margin-bottom: 1rem;
+}
+
+nav .cart-dropdown #cart-items {
+  padding: 1rem 0;
+}
+
+nav .cart-dropdown #cart-items li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  text-align: left;
+}
+
+nav .cart-dropdown .cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+nav .cart-dropdown .cart-item .cart-item-details {
+  flex-grow: 1;
+  text-align: left;
+}
+
+nav .cart-dropdown .cart-item .cart-item-details p {
+  margin: 0;
+  font-size: 16px;
+}
+
+nav .cart-dropdown .cart-item .cart-item-remove {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ff0000;
+  cursor: pointer;
+}
+
+nav .cart-dropdown .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+}
+
+nav .cart-dropdown .footer #total-price {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 1rem;
+}
+
+nav .cart-dropdown .footer .btn .clear {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  font-size: var(--secondary-size);
+  width: 80px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+nav .cart-dropdown .footer .btn .clear:active {
+  color: var(--secondary-color);
+}
+
+nav .cart-dropdown .footer .btn .submit {
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: #ffff;
+  font-size: var(--secondary-size);
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+nav .cart-dropdown .footer .btn .submit:active {
+  background-color: var(--secondary-color);
+}
+
+
+/* ==============================================
+  ส่วน Product Card ( .item )
+  ==============================================
+*/
+.item {
+  width: 100%; 
+  max-width: 400px;
+  background-color: #ffffff; 
+  padding: 1.5rem; 
+  border-radius: 12px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  position: relative;
+  text-align: left; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+}
+
+.item .header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 1rem; 
+  width: 100%; 
+}
+
+.item .header .user-info {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333; 
+  font-weight: 500;
+  transition: color 0.2s ease; 
+}
+
+.item .header .user-info .profile-icon {
+  font-size: 1.5rem; 
+  margin-right: 0.5rem; 
+  color: #777; 
+  transition: color 0.2s ease; 
+}
+
+.item .header .user-info span {
+  font-size: var(--secondary-size); /* 16px */
+  font-weight: 500;
+}
+
+.item .header .user-info:hover {
+  color: var(--primary-color); 
+}
+
+.item .header .user-info:hover .profile-icon { 
+  color: var(--primary-color);
+}
+
+.item .header .actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+}
+
+.item .header .actions .fav, 
+.item .header .actions .options {
+  font-size: 1.125rem; /* 18px */
+  color: #aaa; 
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease; 
+}
+
+.item .header .actions .options:hover {
+  color: #333; 
+  transform: scale(1.1); 
+}
+
+.item .header .actions .fav:hover {
+  color: var(--primary-color);
+  transform: scale(1.1); 
+}
+.item .header .actions .fav.is-favorited {
+  color: red;
+}
+
+/* ⭐️ [ใหม่] เพิ่มสไตล์สำหรับปุ่มลบ */
+.item .header .actions .delete-btn {
+  color: #aaa; /* สีเทาปกติ */
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.item .header .actions .delete-btn:hover {
+  color: #ff4d4d; /* สีแดงตอน hover */
+  transform: scale(1.1);
+}
+
+.item img.productImg {
+  width: 100%;
+  aspect-ratio: 1 / 1;   
+  object-fit: cover;     
+  border-radius: 8px;    
+  margin-bottom: 1rem;   
+}
+
+.item p {
+  margin: 0; 
+  padding: 0; 
+  font-size: var(--primary-size);
+  font-weight: 500;
+}
+
+.item p.productName {
+  margin-bottom: 0.5rem; 
+  flex-grow: 1; 
+  min-height: 2.5em; 
+  color: #111; 
+}
+.item p.productPrice {
+  margin-bottom: 1rem;
+  color: #000; 
+  font-weight: 600; 
+}
+
+.item .button-group {
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  margin-top: auto; 
+}
+
+.item .add {
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  font-size: var(--primary-size);
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #fceef5; 
+  padding: 8px; 
+  border-radius: 8px; 
+  transition: background-color 0.2s ease, color 0.2s ease; 
+  flex: 1; 
+  text-align: center; 
+}
+
+.item .add i[class="fa-solid fa-cart-shopping"] {
+  margin-right: 6px;
+}
+
+.item .add:hover {
+  background-color: #fadedf; 
+}
+
+.item .buy {
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: var(--primary-size);
+  font-weight: 500;
+  padding: 8px; 
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex: 1; 
+  text-align: center; 
+}
+
+.item .buy:hover {
+  background-color: var(--secondary-color);
+}
+
+/* ==============================================
+  ส่วน Chat / Messenger
+  ==============================================
+*/
+.chat-box {
+  position: fixed;
+  bottom: 120px;
+  right: 50px;
+  width: 300px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: none; 
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1998; 
+  text-align: left; 
+}
+
+.chat-header {
+  background-color: #e45a92;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header button {
+  background-color: transparent;
+  border: none;
+  color: #ffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+.message.user {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.message.bot {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.chat-input {
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.chat-input button {
+  background-color: #e45a92;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+/* messenger */
+.messenger {
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  z-index: 1999; 
+}
+
+.messenger button {
+  border: 2px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 50%;
+  font-size: 24px;
+  color: var(--primary-color);
+  cursor: pointer;
+  background-color: #fff; 
+}
+
+.messenger button:active {
+  border: 2px solid rgb(229, 99, 149);
+  color: rgb(229, 99, 149);
+}
+
+#textBox {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: fixed;
+  z-index: 2000;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
+
+#textBox.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+
+/* ==============================================
+  [ใหม่] สไตล์สำหรับ User Dropdown Menu (Mockup)
+============================================== */
+.nav-user-menu {
+  position: relative; /* เป็น Container ให้กับ dropdown */
+}
+
+.dropdown-menu {
+  display: none; /* ซ่อนไว้เป็นค่าเริ่มต้น */
+  position: absolute;
+  top: 100%; /* อยู่ใต้ปุ่มหลัก */
+  right: 0;
+  background-color: #ffff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1001; /* อยู่ทับทุกอย่าง */
+  overflow: hidden; /* สำหรับขอบมน */
+  margin-top: 10px; /* เว้นระยะเล็กน้อย */
+}
+
+/* คลาสนี้จะถูกเพิ่มโดย JavaScript เพื่อโชว์เมนู */
+.dropdown-menu.show {
+  display: block; 
+}
+
+.dropdown-menu.show li a {
+  color: #000;
+}
+
+.dropdown-menu.show li i {
+  color: #000;
+}
+
+.dropdown-menu li {
+  margin-right: 0; /* ล้างค่า margin จาก .menu_2 li */
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #333; /* สีตัวอักษรสีดำ */
+  font-weight: 500;
+  white-space: nowrap; /* ไม่ให้ขึ้นบรรทัดใหม่ */
+}
+
+/* ล้างขีดเส้นใต้ของ Navbar */
+.dropdown-menu li a::after {
+    display: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f5f5f5;
+  color: var(--primary-color);
+}
+
+.dropdown-menu li a i {
+  margin-right: 10px;
+  width: 16px; /* จัดไอคอนให้ตรงกัน */
+}

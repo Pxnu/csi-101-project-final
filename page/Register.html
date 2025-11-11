@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register Form</title>
+    <link rel="stylesheet" href="/assest/css/register.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="#">
+        <div class="title">สมัครสมาชิค</div>
+
+        <div class="input-box underline">
+          <input type="text" placeholder="ชื่อผู้ใช้" required />
+          <div class="underline"></div>
+        </div>
+
+        <div class="input-box underline">
+          <input type="email" placeholder="อีเมล์" required />
+          <div class="underline"></div>
+        </div>
+
+        <div class="input-box">
+          <input type="password" placeholder="รหัสผ่าน" required />
+          <div class="underline"></div>
+        </div>
+
+        <div class="input-box button">
+          <button class="signUp" type="button" onclick="window.location.href='/page/Login.html'">สมัครสมาชิค</button>
+        </div>
+
+        <div class="input-box button">
+           <span>มีบัญชี SPU ชั้น 2 อยู่แล้ว? <a href="/page/Login.html" class="signIn">ลงชื่อเข้าใช้</a></span>
+        </div>
+      </form>
+    </div>
+
+    <script type="module" src="/assest/js/register.js"></script>
+
+  </body>
+</html>

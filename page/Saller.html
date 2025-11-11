@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/assest/css/Seller.css">
+  <title>ลงขายสินค้า</title>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h2><i class="fa-solid fa-store"></i> ลงขายสินค้าของคุณ</h2>
+      <p>เพิ่มสินค้าทีละรายการ เมื่อเสร็จแล้วให้กด "วางขายสินค้าทั้งหมด" ด้านล่าง</p>
+    </div>
+
+    <div id="product-list-container">
+      </div>
+
+    <div class="action-buttons">
+      <button type="button" id="add-product-btn">
+        <i class="fa-solid fa-plus"></i> เพิ่มสินค้ารายการถัดไป
+      </button>
+      <button type="button" id="submit-all-btn">
+        <i class="fa-solid fa-check-circle"></i> วางขายสินค้าทั้งหมด
+      </button>
+    </div>
+  </div>
+
+
+  <script src="/assest/js/Data.js"></script>
+  <script src="/assest/js/Shared.js"></script>
+  <script src="/assest/js/Seller.js"></script>
+</body>
+</html>

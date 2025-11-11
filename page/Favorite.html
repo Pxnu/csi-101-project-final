@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite</title>
+    
+    <link rel="stylesheet" href="/assest/css/global.css">
+    <link rel="stylesheet" href="/assest/css/Favorite.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="/page/Home.html"><img src="/assest/img/logo/Logo SPU SIT_White.png" width="200px" alt="logo"></a>
+            </div>
+            <ul class="menu">
+                <li><a href="/page/Home.html">หน้าหลัก</a></li>
+                <li><a href="/page/Products.html">สินค้า</a></li>
+                <li><a href="#">ติดต่อ</a></li>
+                <li><span><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="ค้นหา..." id="nav-search-input"></span></li>
+            </ul>
+            <ul class="menu_2">
+                <li><a id="cart-icon" href="#"><i class="fa-solid fa-cart-shopping"></i>ตะกร้าสินค้า<span id="cart-count">0</span></a></li>
+                <li><a href="/page/Favorite.html"><i id="favPage" class="fa-solid fa-heart"></i>ถูกใจ<span id="fav-count">0</span></a></li>
+                <li class="nav-user-menu">
+                    <a href="/page/Login.html" id="auth-link">
+                        <i class="fa-solid fa-circle-user"></i>ล็อคอิน
+                    </a>
+                    <ul class="dropdown-menu" id="user-dropdown">
+                        <li><a href="/page/Saller.html"><i class="fa-solid fa-store"></i> สำหรับผู้ขาย</a></li>
+                        <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div id="cart-overlay"></div>
+
+            <div class="cart-dropdown" id="cart-dropdown">
+                <div class="header">
+                    <p>สินค้าของคุณ:</p>
+                    <button id="closeCart" type="button"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <ul id="cart-items">
+                    </ul>
+                <div class="footer">
+                    <p id="total-price">รวมทั้งหมด: 0 บาท</p>
+                    <div class="btn">
+                        <button class="clear" type="button">ลบทั้งหมด</button>
+                        <button class="submit" type="button" onclick="messengerBox()">ติดต่อผู้ขาย</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="title">
+                <h2>สินค้าที่คุณถูกใจ</h2>
+            </div>
+            <section id="fav_container" class="fav_container" aria-live="polite"></section>
+        
+            <div id="emptytext" class="empty"></div>
+                
+            <div class="img">
+                <img src="/assest/img/logo/Logo SPU SIT_Color.png" alt="" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <p>💬 ผู้ขาย</p>
+            <button id="closeChatBtn" type="button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <p>สนใจสินค้าตัวไหนครับ</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="พิมพ์ข้อความ...">
+            <button id="sendBtn">➤</button>
+        </div>
+    </div>
+
+     <div class="messenger">
+        <button id="messenger" type="button"><i class="fa-brands fa-facebook-messenger"></i></button>
+    </div>
+
+    <div id="textBox"></div>
+
+    <script src="/assest/js/Data.js"></script>
+    <script src="/assest/js/Shared.js"></script>
+    <script src="/assest/js/Favorite.js"></script>
+</body>
+</html>

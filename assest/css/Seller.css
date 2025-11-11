@@ -1,0 +1,225 @@
+/* ⭐️ ดึงสีหลักมาจาก Global.css */
+:root {
+  --primary-color: #e45a92;
+  --primary-light: #fceef5;
+  --border-color: #ddd;
+  --error-color: #ff4d4d;
+}
+
+body {
+  font-family: "Prompt", sans-serif;
+  background-color: #f5f5f5; /* ⭐️ พื้นหลังสีเทาอ่อน */
+  margin: 0;
+  padding: 40px 0;
+}
+
+/* ⭐️ [ใหม่] เปลี่ยน .container เป็น .form-container */
+.form-container {
+  max-width: 700px; /* ขยายความกว้างเล็กน้อย */
+  background: transparent; /* ไม่ต้องมีการ์ดครอบ */
+  margin: 40px auto;
+  padding: 0 10px; /* เพิ่ม padding ด้านข้าง */
+}
+
+/* (ส่วน container ของ nav ไม่ต้องยุ่ง) */
+nav .container {
+  max-width: 1320px;
+  background: transparent;
+  margin: 0 auto;
+  padding: 1.25rem;
+  box-shadow: none;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-header h2 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-header h2 i {
+  color: var(--primary-color);
+  margin-right: 8px;
+}
+
+.form-header p {
+  color: #777;
+  font-size: 16px;
+}
+
+/* ⭐️ [ใหม่] สไตล์สำหรับ "การ์ด" สินค้าแต่ละชิ้น */
+.product-card {
+  background: #ffffff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+  position: relative;
+  border: 1px solid transparent; /* สำหรับ error state */
+}
+
+.product-card.error {
+  border: 1px solid var(--error-color);
+  background: #fff8f8;
+}
+
+/* ⭐️ [ใหม่] ปุ่มลบการ์ด (ถังขยะ) */
+.remove-item-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.remove-item-btn:hover {
+  color: var(--error-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+  font-family: "Prompt", sans-serif;
+  box-sizing: border-box; 
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+.form-row .form-group {
+  flex: 1; 
+}
+
+/* ⭐️ สไตล์ปุ่มอัปโหลดไฟล์ใหม่ */
+.image-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  color: #777;
+  position: relative; /* ⭐️ สำหรับ Preview */
+  overflow: hidden; /* ⭐️ สำหรับ Preview */
+}
+
+.image-upload-label i {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.image-upload-label:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.preview {
+  margin-top: 0;
+  text-align: center;
+}
+
+/* ⭐️ [ใหม่] สไตล์ Preview ให้อยู่ในปุ่มอัปโหลด */
+.preview img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ⭐️ ให้รูปเต็มปุ่ม */
+  border-radius: 8px;
+}
+
+/* ⭐️ [ใหม่] ซ่อนข้อความ "คลิกเพื่ออัปโหลด" เมื่อมีรูป */
+.image-upload-label.has-image i,
+.image-upload-label.has-image span {
+  display: none;
+}
+
+
+/* ⭐️ [ใหม่] สไตล์ปุ่มควบคุมด้านล่าง */
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#add-product-btn,
+#submit-all-btn {
+  width: 100%;
+  border: none;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Prompt", sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ⭐️ [ใหม่] ปุ่มเพิ่ม (สีชมพูอ่อน) */
+#add-product-btn {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border: 1px dashed var(--primary-color);
+}
+#add-product-btn:hover {
+  background-color: #fadedf;
+}
+
+/* ⭐️ [ใหม่] ปุ่มยืนยัน (สีชมพูเข้ม) */
+#submit-all-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+#submit-all-btn:hover {
+  background-color: #d14e85;
+}

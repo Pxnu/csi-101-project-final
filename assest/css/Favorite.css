@@ -1,0 +1,81 @@
+/* ⭐️ ลบ :root, *, nav, cart, chat, messenger, textBox ออก
+   เพราะถูกควบคุมโดย global.css แล้ว */
+
+/* ตั้งค่าทั่วไปของหน้า */
+body {
+  font-family: "Prompt", sans-serif;
+  background-color: #fff3f8;
+  color: #333;
+  text-align: center;
+}
+
+header {
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 2.25rem;
+
+    /* หัวข้อใหญ่ */
+    h2 {
+      color: #e45a92;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    /* ข้อความตอนยังไม่มีสินค้า */
+    #emptytext {
+      color: #e45a92;
+      font-size: 1.4em;
+      font-weight: 600;
+      padding: 20px 30px;
+      width: fit-content;
+      margin: 30px auto;
+    }
+
+    /* ⭐️ [อัปเดต] เปลี่ยน layout ให้เป็น grid เหมือนหน้า Products */
+    #fav_container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      margin-top: 2rem;
+      gap: 2rem;
+      justify-items: center; 
+    }
+
+    /* ⭐️ [ลบ] สไตล์ .item, .item h3, .price, .btn เก่าออก */
+
+    /* ⭐️ [แก้ไข] เราจะสั่งให้ปุ่ม "ลบออก"
+       กลับไปใช้ flex: 1 และ padding: 8px
+       เพื่อให้มัน "กว้างเท่ากัน" กับอีก 2 ปุ่ม
+    */
+    .item .button-group .remove {
+      border: none;
+      outline: none;
+      background-color: #ff6b6b; /* สีแดง */
+      color: #fff;
+      font-size: var(--primary-size);
+      font-weight: 500;
+      padding: 8px; /* ⭐️ กลับไปใช้ 8px */
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      flex: 1; /* ⭐️ กลับไปใช้ flex: 1 */
+      text-align: center; 
+    }
+    
+    .item .button-group .remove:hover {
+        background-color: #e25757;
+    }
+
+
+    /* (โค้ดส่วน logo SPU ด้านล่างยังเหมือนเดิม) */
+    .img {
+      display: flex;
+      justify-content: center;
+      .logo {
+        width: 500px;
+        height: 250px;
+      }
+    }
+  }
+}
