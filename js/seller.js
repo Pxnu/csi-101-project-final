@@ -162,7 +162,7 @@ function handleSubmitAll() {
     alert(`✅ วางขายสินค้า ${newProductsAdded} รายการเรียบร้อยแล้ว!`);
     
     // ย้ายไปหน้าสินค้า (แก้ Path สำหรับ Deploy)
-    window.location.href = "./Products.html";
+    window.location.href = "/products.html";
 
   } catch (err) {
     console.error("Error saving products:", err);
