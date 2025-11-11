@@ -31,7 +31,7 @@ function handleSearchRedirect() {
         e.preventDefault();
         const searchTerm = searchInput.value.trim();
         if (searchTerm) {
-          window.location.href = `/page/Products.html?search=${encodeURIComponent(
+          window.location.href = `/products.html?search=${encodeURIComponent(
             searchTerm
           )}`;
         }
