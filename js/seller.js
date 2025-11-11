@@ -53,8 +53,8 @@ function createNewProductForm() {
       <input type="text" class="product-name" required placeholder="เช่น เสื้อโปโล, กระเป๋าผ้า...">
     </div>
     <div class="form-group">
-      <label>รายละเอียด:</label>
-      <textarea class="product-description" rows="3" required placeholder="เช่น สภาพ, ขนาด, สี..."></textarea>
+      <label>รายละเอียด: (ไม่บังคับ)</label>
+      <textarea class="product-description" rows="3" placeholder="เช่น สภาพ, ขนาด, สี..."></textarea>
     </div>
     <div class="form-row">
       <div class="form-group">
@@ -83,12 +83,9 @@ function createNewProductForm() {
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
-        // e.target.result คือสตริง Base64 ของรูปภาพ
         preview.innerHTML = `<img src="${e.target.result}" alt="ภาพสินค้า">`;
-        uploadLabel.classList.add("has-image"); // ⭐️ เพิ่มคลาสเพื่อซ่อนข้อความ
-
-        // ⭐️ [สำคัญ] บันทึก Base64 ไว้ใน data-* attribute
-        card.dataset.imageBase64 = e.target.result;
+        uploadLabel.classList.add("has-image");
+        card.dataset.imageBase64 = e.target.result; 
       };
       reader.readAsDataURL(file);
     }
@@ -103,7 +100,7 @@ function createNewProductForm() {
  */
 function handleSubmitAll() {
   const allCards = document.querySelectorAll(".product-card");
-
+  
   if (allCards.length === 0) {
     alert("คุณยังไม่ได้เพิ่มสินค้าใดๆ");
     return;
@@ -116,27 +113,28 @@ function handleSubmitAll() {
   let hasError = false;
 
   allCards.forEach((card) => {
-    // ลบ class error เก่าออกก่อน
     card.classList.remove("error");
 
     const name = card.querySelector(".product-name").value.trim();
     const price = card.querySelector(".product-price").value;
-    const desc = card.querySelector(".product-description").value.trim();
-    const imageBase64 = card.dataset.imageBase64; // ⭐️ ดึง Base64 จาก data
+    const desc = card.querySelector(".product-description").value.trim(); // ⭐️ ยังเก็บรายละเอียด (แม้จะว่าง)
+    const imageBase64 = card.dataset.imageBase64; 
 
     // --- 1. ตรวจสอบข้อมูล ---
-    if (!name || !price || !desc || !imageBase64) {
-      card.classList.add("error"); // ⭐️ ไฮไลท์การ์ดที่มีปัญหา
+    // ⭐️ [แก้ไข] ลบ !desc (การตรวจสอบรายละเอียด) ออก
+    if (!name || !price || !imageBase64) {
+      card.classList.add("error"); 
       hasError = true;
-      return; // ข้ามการ์ดนี้ไป
+      return; 
     }
 
     // --- 2. สร้างอ็อบเจกต์สินค้าใหม่ ---
     const newProduct = {
-      ID: new Date().getTime() + Math.random(), // ⭐️ ทำให้ ID ไม่ซ้ำกัน
+      ID: new Date().getTime() + Math.random(), 
       name: name,
       price: parseFloat(price),
       img: imageBase64,
+      description: desc // ⭐️ [ใหม่] เพิ่มรายละเอียด (แม้จะเป็นค่าว่าง)
     };
 
     // --- 3. เพิ่มเข้า List ---
@@ -147,13 +145,13 @@ function handleSubmitAll() {
 
   // --- 4. จัดการผลลัพธ์ ---
   if (hasError) {
-    alert("⚠️ เกิดข้อผิดพลาด! กรุณากรอกข้อมูลในช่อง (สีแดง) ให้ครบถ้วน");
+    alert("⚠️ เกิดข้อผิดพลาด! กรุณากรอกข้อมูลในช่อง (สีแดง) ให้ครบถ้วน (ยกเว้นรายละเอียด)");
     return;
   }
-
+  
   if (newProductsAdded === 0) {
-    alert("ไม่พบสินค้าใหม่ที่จะเพิ่ม");
-    return;
+     alert("ไม่พบสินค้าใหม่ที่จะเพิ่ม");
+     return;
   }
 
   // --- 5. บันทึกลง Storage ---
@@ -162,9 +160,10 @@ function handleSubmitAll() {
     localStorage.setItem("myProductIDs", JSON.stringify(myProductIDs));
 
     alert(`✅ วางขายสินค้า ${newProductsAdded} รายการเรียบร้อยแล้ว!`);
+    
+    // ย้ายไปหน้าสินค้า (แก้ Path สำหรับ Deploy)
+    window.location.href = "./Products.html";
 
-    // ย้ายไปหน้าสินค้า
-    window.location.href = "/products.html";
   } catch (err) {
     console.error("Error saving products:", err);
     alert("เกิดข้อผิดพลาดในการบันทึกสินค้า");

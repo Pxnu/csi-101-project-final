@@ -77,7 +77,9 @@ function createCardFavoritesItem(item) {
   addToCartBtn.addEventListener("click", () => addToCart(item));
 
   const buyBtn = card.querySelector(".buy");
-  buyBtn.addEventListener("click", messengerBox);
+  buyBtn.addEventListener("click", () => {
+    window.location.href='/chat.html'
+  });
 
   const removeBtn = card.querySelector("[data-action='remove']");
   removeBtn.addEventListener("click", () =>

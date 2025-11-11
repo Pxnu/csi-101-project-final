@@ -18,8 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      alert("ต้องการออกจากระบบใช่หรือไม่");
-      window.location.href = "/login.html";
+      // ⭐️ [แก้ไขบั๊ก] เปลี่ยนจาก alert เป็น confirm
+      if (confirm("ต้องการออกจากระบบใช่หรือไม่")) {
+        window.location.href = "/login.html";
+      }
     });
   }
 
@@ -28,6 +30,32 @@ document.addEventListener("DOMContentLoaded", () => {
       userDropdown.classList.remove("show");
     }
   });
+
+  // ⭐️ [ใหม่] สั่งอัปเดต UI ทันทีที่หน้านี้โหลดเสร็จ
+  // (เพื่อให้ chat.html มีตัวเลขที่ถูกต้อง)
+  updateCart();
+  updateFavCount();
+});
+
+/* ==============================================
+  ⭐️ [ใหม่] Sync ตะกร้าและถูกใจ ข้ามแท็บ
+============================================== */
+window.addEventListener('storage', (event) => {
+    // ถ้า key ที่เปลี่ยนคือ ตะกร้า (จาก data.js)
+    if (event.key === CART_KEY) {
+        console.log("Storage Sync: Cart changed!");
+        // เราต้องโหลด cart ใหม่จาก localStorage ก่อน
+        cart = loadCart(); 
+        // แล้วค่อยอัปเดต UI
+        updateCart();
+    }
+    
+    // ถ้า key ที่เปลี่ยนคือ ถูกใจ (จาก data.js)
+    if (event.key === SAMPLE_KEY) {
+        console.log("Storage Sync: Favorites changed!");
+        // อัปเดต UI (loadFavorites() จะถูกเรียกใน updateFavCount())
+        updateFavCount();
+    }
 });
 
 /* ==============================================
