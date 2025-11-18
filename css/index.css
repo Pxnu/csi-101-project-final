@@ -1,11 +1,14 @@
+/* รีเซ็ต CSS */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* จัดหน้าเว็บให้อยู่กึ่งกลางจอ */
 body {
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* ซ่อน scrollbar */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,28 +16,36 @@ body {
   position: relative;
   font-family: sans-serif;
 }
+
+/* กล่องครอบปุ่ม */
 .button-container {
   display: flex;
   gap: 50px;
-  z-index: 1;
+  z-index: 1; /* อยู่ทับพื้นหลัง */
 }
+
+/* ปุ่ม .btn (ปุ่มแรก) */
 .btn {
   padding: 100px 100px;
-  font-size: 16vh;
+  font-size: 16vh; /* ขนาดตัวอักษรใหญ่ (Responsive) */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.4s;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.7); /* สีขาวโปร่งแสง */
   color: white;
   text-decoration: none;
-  backdrop-filter: blur(5px);
-  background-color: transparent;
+  backdrop-filter: blur(5px); /* เอฟเฟกต์กระจกฝ้า */
+  background-color: transparent; /* ทำให้ backdrop-filter ทำงาน */
 }
+
+/* ข้อความเล็กในปุ่ม */
 .btn span {
   display: inline-block;
   font-size: 4rem;
 }
+
+/* ปุ่ม .btn2 (ปุ่มสอง) */
 .btn2 {
   padding: 100px 100px;
   font-size: 16vh;
@@ -42,34 +53,135 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.4s;
-  background-color: rgb(44, 148, 91);
+  background-color: rgb(44, 148, 91); /* สีเขียว */
   color: white;
   text-decoration: none;
   backdrop-filter: blur(5px);
   background-color: transparent;
 }
+
+/* ข้อความเล็กในปุ่ม */
 .btn2 span {
   display: inline-block;
   font-size: 4rem;
 }
+
+/* เอฟเฟกต์ Hover ปุ่ม .btn */
 .btn:hover {
   background-color: rgb(85, 85, 206);
-  transform: scale(1.1);
+  transform: scale(1.1); /* ขยาย */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* เอฟเฟกต์ Hover ปุ่ม .btn2 */
 .btn2:hover {
   background-color: rgb(44, 148, 91);
   transform: scale(1.1);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
-.balck {
+
+/* ภาพพื้นหลัง */
+.balck { /* (ชื่อ class สะกดผิด แต่ใช้ตามไฟล์) */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: blur(1vh);
-  transform: scale(1.05);
+  object-fit: cover; /* ขยายเต็มจอ */
+  z-index: -1; /* อยู่หลังสุด */
+  filter: blur(1vh); /* เบลอภาพ */
+  transform: scale(1.05); /* ขยายเล็กน้อย (กันขอบ) */
+}/* รีเซ็ต CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* จัดหน้าเว็บให้อยู่กึ่งกลางจอ */
+body {
+  height: 100vh;
+  overflow: hidden; /* ซ่อน scrollbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  font-family: sans-serif;
+}
+
+/* กล่องครอบปุ่ม */
+.button-container {
+  display: flex;
+  gap: 50px;
+  z-index: 1; /* อยู่ทับพื้นหลัง */
+}
+
+/* ปุ่ม .btn (ปุ่มแรก) */
+.btn {
+  padding: 100px 100px;
+  font-size: 16vh; /* ขนาดตัวอักษรใหญ่ (Responsive) */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+  background-color: rgba(255, 255, 255, 0.7); /* สีขาวโปร่งแสง */
+  color: white;
+  text-decoration: none;
+  backdrop-filter: blur(5px); /* เอฟเฟกต์กระจกฝ้า */
+  background-color: transparent; /* ทำให้ backdrop-filter ทำงาน */
+}
+
+/* ข้อความเล็กในปุ่ม */
+.btn span {
+  display: inline-block;
+  font-size: 4rem;
+}
+
+/* ปุ่ม .btn2 (ปุ่มสอง) */
+.btn2 {
+  padding: 100px 100px;
+  font-size: 16vh;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.4s;
+  background-color: rgb(44, 148, 91); /* สีเขียว */
+  color: white;
+  text-decoration: none;
+  backdrop-filter: blur(5px);
+  background-color: transparent;
+}
+
+/* ข้อความเล็กในปุ่ม */
+.btn2 span {
+  display: inline-block;
+  font-size: 4rem;
+}
+
+/* เอฟเฟกต์ Hover ปุ่ม .btn */
+.btn:hover {
+  background-color: rgb(85, 85, 206);
+  transform: scale(1.1); /* ขยาย */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* เอฟเฟกต์ Hover ปุ่ม .btn2 */
+.btn2:hover {
+  background-color: rgb(44, 148, 91);
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ภาพพื้นหลัง */
+.balck { /* (ชื่อ class สะกดผิด แต่ใช้ตามไฟล์) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ขยายเต็มจอ */
+  z-index: -1; /* อยู่หลังสุด */
+  filter: blur(1vh); /* เบลอภาพ */
+  transform: scale(1.05); /* ขยายเล็กน้อย (กันขอบ) */
 }

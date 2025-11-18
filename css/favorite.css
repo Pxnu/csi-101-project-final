@@ -1,19 +1,26 @@
+/* สไตล์หน้า "ถูกใจ" */
 body {
   font-family: "Prompt", sans-serif;
-  background-color: #fff3f8;
+  background-color: #fff3f8; /* สีชมพูอ่อนมาก */
   color: #333;
   text-align: center;
 }
+
+/* Container */
 header .container {
   max-width: 1320px;
   margin: 0 auto;
   padding: 2.25rem;
 }
+
+/* หัวข้อ (เช่น "Favorites") */
 header .container h2 {
   color: #e45a92;
   font-size: 2em;
   margin-bottom: 20px;
 }
+
+/* ข้อความเมื่อไม่มีสินค้า */
 header .container #emptytext {
   color: #e45a92;
   font-size: 1.4em;
@@ -22,17 +29,22 @@ header .container #emptytext {
   width: fit-content;
   margin: 30px auto;
 }
+
+/* ตารางแสดงสินค้าที่ถูกใจ */
 header .container #fav_container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin-top: 2rem;
   gap: 2rem;
-  justify-items: center; 
+  justify-items: center;
 }
+
+/* ปุ่ม "ลบ" (เฉพาะในหน้านี้) */
+/* (ใช้ .item จาก global.css) */
 header .container .item .button-group .remove {
   border: none;
   outline: none;
-  background-color: #ff6b6b;
+  background-color: #ff6b6b; /* สีแดง */
   color: #fff;
   font-size: var(--primary-size);
   font-weight: 500;
@@ -41,15 +53,19 @@ header .container .item .button-group .remove {
   cursor: pointer;
   transition: background-color 0.2s ease;
   flex: 1;
-  text-align: center; 
+  text-align: center;
 }
+
 header .container .item .button-group .remove:hover {
-    background-color: #e25757;
+  background-color: #e25757; /* สีแดงเข้มขึ้น */
 }
+
+/* (สไตล์ .logo ที่อาจไม่ได้ใช้) */
 header .container .img {
   display: flex;
   justify-content: center;
 }
+
 header .container .img .logo {
   width: 500px;
   height: 250px;

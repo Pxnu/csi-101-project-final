@@ -1,10 +1,15 @@
+/* นำเข้าฟอนต์ Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+/* รีเซ็ต CSS */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+/* จัดหน้าเว็บให้อยู่กึ่งกลางจอ */
 body {
   display: grid;
   height: 100vh;
@@ -12,9 +17,13 @@ body {
   place-items: center;
   background: linear-gradient(to right, #e45a92 0%, #e45a92 100%);
 }
+
+/* สีตอนลากเมาส์คลุม */
 ::selection {
   background: #e45a92;
 }
+
+/* กล่องฟอร์มหลัก */
 .container {
   background: #fff;
   max-width: 400px;
@@ -23,12 +32,16 @@ body {
   border-radius: 5px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
+
+/* หัวข้อ (เช่น "Register") */
 .container form .title {
   font-size: 30px;
   font-weight: 600;
   margin: 20px 0 10px 0;
   position: relative;
 }
+
+/* ขีดเส้นใต้เล็กๆ ใต้หัวข้อ */
 .container form .title:before {
   content: "";
   position: absolute;
@@ -39,12 +52,16 @@ body {
   border-radius: 5px;
   background: linear-gradient(to right, #e45a92 0%, #e45a92 100%);
 }
+
+/* กล่องสำหรับช่อง input */
 .container form .input-box {
   width: 100%;
   height: 50px;
   margin-top: 30px;
   position: relative;
 }
+
+/* ช่อง input */
 .container form .input-box input {
   width: 100%;
   height: 100%;
@@ -52,6 +69,8 @@ body {
   font-size: 18px;
   border: none;
 }
+
+/* เส้นใต้ input (สีเทา) */
 .container form .underline::before {
   content: "";
   position: absolute;
@@ -61,6 +80,8 @@ body {
   left: 0;
   bottom: 0;
 }
+
+/* เส้นใต้ input (สีชมพู - สำหรับ animation) */
 .container form .underline::after {
   content: "";
   position: absolute;
@@ -69,18 +90,23 @@ body {
   background: #e45a92;
   left: 0;
   bottom: 0;
-  transform: scaleX(0);
+  transform: scaleX(0); /* ซ่อนไว้ */
   transform-origin: left;
   transition: all 0.3s ease;
 }
+
+/* เมื่อ focus หรือมีข้อความ ให้แสดงเส้นสีชมพู */
 .container form .input-box input:focus ~ .underline::after,
 .container form .input-box input:valid ~ .underline::after {
   transform: scaleX(1);
-  transform-origin: left;
 }
+
+/* กล่องปุ่ม Submit */
 .container form .button {
   margin: 40px 0 20px 0;
 }
+
+/* ปุ่ม Submit (input type="submit") */
 .container .input-box input[type="submit"] {
   background: #e45a92;
   font-size: 18px;
@@ -88,10 +114,12 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .container .input-box input[type="submit"]:hover {
   background: linear-gradient(to left, #e45a92 0%, #e45a92 100%);
 }
 
+/* ปุ่ม SignUp (class .signUp) */
 .signUp {
   width: 340px;
   height: 50px;
@@ -100,33 +128,38 @@ body {
   font-size: 16px;
   background-color: #e45a92;
   color: #ffff;
-
-  &:active {
-    background-color: rgb(212, 0, 85);
-  }
 }
 
+.signUp:active {
+  background-color: rgb(212, 0, 85);
+}
+
+/* ปุ่ม SignIn (class .signIn) */
 .signIn {
   width: 340px;
   height: 50px;
   border: none;
   outline: none;
   font-size: 16px;
-  color: #e45a92;
-
-  &:active {
-    color: rgb(212, 0, 85);
-  }
+  color: #e45a92; /* สีตัวอักษรชมพู */
 }
 
+.signIn:active {
+  color: rgb(212, 0, 85);
+}
+
+/* ข้อความ "Or connect with..." */
 .container .option {
   font-size: 14px;
   text-align: center;
 }
+
 .container .option div {
   display: flex;
   align-items: center;
 }
+
+/* สไตล์ปุ่ม Social */
 .container .facebook a,
 .container .twitter a {
   display: block;
@@ -141,23 +174,30 @@ body {
   transition: all 0.3s ease;
 }
 
+/* ไอคอน Social */
 .container .facebook i,
 .container .twitter i {
   padding-right: 12px;
   font-size: 20px;
 }
+
+/* ปุ่ม Twitter */
 .container .twitter a {
   background: linear-gradient(to right, #00acee 0%, #1abeff 100%);
   margin: 20px 0 15px 0;
 }
+
 .container .twitter a:hover {
   background: linear-gradient(to left, #00acee 0%, #1abeff 100%);
   margin: 20px 0 15px 0;
 }
+
+/* ปุ่ม Facebook */
 .container .facebook a {
   background: linear-gradient(to right, #3b5998 0%, #476bb8 100%);
   margin: 20px 0 50px 0;
 }
+
 .container .facebook a:hover {
   background: linear-gradient(to left, #3b5998 0%, #476bb8 100%);
   margin: 20px 0 50px 0;

@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. จัดการปุ่ม "ลบ" (Event Delegation)
   if (listContainer) {
     listContainer.addEventListener("click", (e) => {
-      // ตรวจสอบว่าที่คลิกคือปุ่มลบ (ที่มี class .remove-item-btn หรือ icon ข้างใน)
+      // ตรวจสอบว่าที่คลิกคือปุ่มลบ (ที่มี class .remove-item-btn)
       const removeButton = e.target.closest(".remove-item-btn");
       if (removeButton) {
         // หา .product-card ที่เป็นแม่ของปุ่มนี้ แล้วลบมัน
@@ -41,7 +41,7 @@ function createNewProductForm() {
   const card = document.createElement("div");
   card.className = "product-card";
 
-  // สร้าง ID ที่ไม่ซ้ำกันสำหรับ <label> และ <input> ของไฟล์
+  // สร้าง ID ที่ไม่ซ้ำกันสำหรับ <label> และ <input> ของไฟล์ (เพื่อให้คลิก label ได้)
   const uniqueId = `image-${new Date().getTime()}`;
 
   card.innerHTML = `
@@ -81,13 +81,15 @@ function createNewProductForm() {
   imageInput.addEventListener("change", function () {
     const file = this.files[0];
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader(); // ใช้ FileReader
       reader.onload = function (e) {
+        // เมื่ออ่านไฟล์เสร็จ
         preview.innerHTML = `<img src="${e.target.result}" alt="ภาพสินค้า">`;
         uploadLabel.classList.add("has-image");
+        // เก็บข้อมูลรูปภาพ (Base64) ไว้ใน dataset ของ card
         card.dataset.imageBase64 = e.target.result; 
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // เริ่มอ่านไฟล์
     }
   });
 
@@ -107,39 +109,41 @@ function handleSubmitAll() {
   }
 
   // (allProducts และ PRODUCTS_KEY มาจาก Data.js)
-  let currentProducts = allProducts;
-  let myProductIDs = JSON.parse(localStorage.getItem("myProductIDs")) || [];
+  let currentProducts = allProducts; // โหลดสินค้าเดิม
+  let myProductIDs = JSON.parse(localStorage.getItem("myProductIDs")) || []; // โหลด ID สินค้าของเรา
   let newProductsAdded = 0;
   let hasError = false;
 
+  // วนลูปตรวจสอบทุกการ์ด (ฟอร์ม)
   allCards.forEach((card) => {
     card.classList.remove("error");
 
+    // ดึงข้อมูลจาก input
     const name = card.querySelector(".product-name").value.trim();
     const price = card.querySelector(".product-price").value;
-    const desc = card.querySelector(".product-description").value.trim(); // ⭐️ ยังเก็บรายละเอียด (แม้จะว่าง)
-    const imageBase64 = card.dataset.imageBase64; 
+    const desc = card.querySelector(".product-description").value.trim();
+    const imageBase64 = card.dataset.imageBase64; // ดึงข้อมูลรูปจาก dataset
 
     // --- 1. ตรวจสอบข้อมูล ---
-    // ⭐️ [แก้ไข] ลบ !desc (การตรวจสอบรายละเอียด) ออก
+    // (รายละเอียด (desc) ไม่บังคับ)
     if (!name || !price || !imageBase64) {
-      card.classList.add("error"); 
+      card.classList.add("error"); // เพิ่ม class error (กรอบสีแดง)
       hasError = true;
-      return; 
+      return; // ข้ามการ์ดนี้
     }
 
     // --- 2. สร้างอ็อบเจกต์สินค้าใหม่ ---
     const newProduct = {
-      ID: new Date().getTime() + Math.random(), 
+      ID: new Date().getTime() + Math.random(), // สร้าง ID ชั่วคราว
       name: name,
       price: parseFloat(price),
-      img: imageBase64,
-      description: desc // ⭐️ [ใหม่] เพิ่มรายละเอียด (แม้จะเป็นค่าว่าง)
+      img: imageBase64, // ใช้ Base64
+      description: desc // เพิ่มรายละเอียด (แม้จะเป็นค่าว่าง)
     };
 
     // --- 3. เพิ่มเข้า List ---
-    currentProducts.push(newProduct);
-    myProductIDs.push(newProduct.ID);
+    currentProducts.push(newProduct); // เพิ่มในอาร์เรย์สินค้าทั้งหมด
+    myProductIDs.push(newProduct.ID); // เพิ่มในอาร์เรย์ ID สินค้าของเรา
     newProductsAdded++;
   });
 
@@ -161,7 +165,7 @@ function handleSubmitAll() {
 
     alert(`✅ วางขายสินค้า ${newProductsAdded} รายการเรียบร้อยแล้ว!`);
     
-    // ย้ายไปหน้าสินค้า (แก้ Path สำหรับ Deploy)
+    // ย้ายไปหน้าสินค้า
     window.location.href = "/products.html";
 
   } catch (err) {

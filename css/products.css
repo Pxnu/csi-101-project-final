@@ -1,20 +1,31 @@
+/* Container ในหน้า Products */
 header .container {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 1.25rem; 
+  padding: 1.25rem;
 }
+
+/* หัวข้อ (เช่น "All Products") */
 header .container .title {
   margin: 1rem 0;
-  display: inline-block; 
-  text-align: left; 
+  display: inline-block;
+  text-align: left;
 }
+
+/* ขีดเส้นใต้หัวข้อ */
 header .container .title h2 {
   border-bottom: 2px solid #000;
 }
+
+/* ตารางแสดงสินค้า */
 header .container .product-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  /* Grid แบบยืดหยุ่น:
+    - auto-fit: สร้างคอลัมน์อัตโนมัติ
+    - minmax(300px, 1fr): แต่ละคอลัมน์กว้างอย่างน้อย 300px และขยายเท่าๆ กัน
+  */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   margin-top: 2rem;
   gap: 2rem;
-  justify-items: center; 
+  justify-items: center;
 }

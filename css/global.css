@@ -1,3 +1,4 @@
+/* กำหนดตัวแปรสีและขนาดที่ใช้ซ้ำๆ */
 :root {
   --primary-color: #e45a92;
   --secondary-color: #f49bab;
@@ -5,39 +6,41 @@
   --secondary-size: 16px;
 }
 
+/* รีเซ็ต CSS พื้นฐาน */
 * {
   margin: 0;
   padding: 0;
-  text-decoration: none;
-  list-style: none;
+  text-decoration: none; /* เอาขีดเส้นใต้ลิงก์ออก */
+  list-style: none; /* เอา bullet point ออก */
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* เวลากด anchor link จะเลื่อนนุ่มนวล */
 }
 
 body {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; /* สีพื้นหลังเทาอ่อน */
   position: relative;
 }
 
 /* ==============================================
   ส่วน Navigation Bar
-  ==============================================
-*/
+  ============================================== */
 nav {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color); /* ใช้สีหลัก */
 }
 
+/* Container ภายใน Navbar (จำกัดความกว้างและจัดกลาง) */
 nav .container {
   max-width: 1320px;
-  margin: 0 auto;
+  margin: 0 auto; /* จัดกลาง */
   padding: 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* แบ่งเมนูซ้าย-ขวา */
 }
 
+/* เมนูฝั่งซ้าย (Home, Products) */
 nav .menu {
   display: flex;
 }
@@ -53,6 +56,7 @@ nav .menu li a {
   font-size: var(--primary-size);
 }
 
+/* สร้างขีดเส้นใต้ (ซ่อนไว้) */
 nav .menu li a::after {
   position: absolute;
   content: "";
@@ -61,15 +65,17 @@ nav .menu li a::after {
   width: 100%;
   height: 2px;
   background-color: #ffff;
-  transform: scaleX(0);
+  transform: scaleX(0); /* ซ่อน */
   transform-origin: left;
   transition: transform 0.3s ease;
 }
 
+/* แสดงขีดเส้นใต้เมื่อ Hover */
 nav .menu li a:hover::after {
   transform: scaleX(1);
 }
 
+/* ช่องค้นหาใน Navbar */
 nav .menu li span {
   color: #ffff;
   padding: 0.625rem 0;
@@ -84,18 +90,20 @@ nav .menu li span i[class="fa-solid fa-magnifying-glass"] {
 nav .menu li span input {
   border: none;
   outline: none;
-  background-color: transparent;
+  background-color: transparent; /* โปร่งใส */
   color: #ffff;
   width: 100px;
   font-size: var(--primary-size);
   font-weight: 500;
 }
 
+/* สีข้อความ placeholder */
 nav .menu li span input::placeholder {
   color: #ffff;
   font-size: var(--primary-size);
 }
 
+/* เมนูฝั่งขวา (Icons) */
 nav .menu_2 {
   display: flex;
 }
@@ -105,18 +113,20 @@ nav .menu_2 li {
 }
 
 nav .menu_2 li a {
-  position: relative;
+  position: relative; /* สำหรับตัวนับ */
   color: #ffff;
   font-weight: bold;
   font-size: var(--primary-size);
 }
 
+/* ขนาดไอคอน */
 nav .menu_2 li a i[class="fa-solid fa-circle-user"],
 nav .menu_2 li a i[class="fa-solid fa-cart-shopping"],
 nav .menu_2 li a i[class="fa-solid fa-heart fav"] {
   font-size: var(--primary-size);
 }
 
+/* ระยะห่างไอคอน */
 nav .menu_2 li a i[class="fa-solid fa-magnifying-glass"],
 nav .menu_2 li a i[class="fa-solid fa-circle-user"],
 nav .menu_2 li a i[class="fa-solid fa-cart-shopping"],
@@ -124,6 +134,7 @@ nav .menu_2 li a i[class="fa-solid fa-heart"] {
   margin-right: 0.625rem;
 }
 
+/* ตัวนับ (วงกลมแดง) */
 nav .menu_2 li a #cart-count,
 nav .menu_2 li a #fav-count {
   position: absolute;
@@ -134,40 +145,43 @@ nav .menu_2 li a #fav-count {
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 12px;
-  display: none;
+  display: none; /* ซ่อนไว้ (JS จะสั่งโชว์) */
 }
 
-/* Overlay มืด */
+/* --- ส่วนตะกร้าสินค้า (Popup/Modal) --- */
+
+/* พื้นหลังสีดำโปร่งแสง (Overlay) */
 nav #cart-overlay {
-  display: none; /* เริ่มซ่อน */
+  display: none; /* ซ่อนไว้ */
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999; /* อยู่ด้านหลังตะกร้า */
+  z-index: 999;
 }
 
-/* ตะกร้าสินค้าแบบ popup */
+/* กล่องตะกร้า */
 nav .cart-dropdown {
-  display: none;
+  display: none; /* ซ่อนไว้ */
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* จัดกลางจอ */
   background-color: #fff;
   border: 1px solid #ddd;
   padding: 30px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1000; /* อยู่เหนือ overlay */
+  z-index: 1000; /* อยู่ทับ Overlay */
   width: 80%;
   max-width: 1000px;
   min-height: 400px;
   border-radius: 12px;
-  overflow-y: auto;
+  overflow-y: auto; /* ถ้าสูงไปให้ scroll */
 }
 
+/* Header ของตะกร้า */
 nav .cart-dropdown .header {
   display: flex;
   justify-content: space-between;
@@ -181,6 +195,7 @@ nav .cart-dropdown .header p {
   font-weight: bold;
 }
 
+/* ปุ่มปิด (X) */
 nav .cart-dropdown .header button {
   cursor: pointer;
   background-color: transparent;
@@ -189,6 +204,7 @@ nav .cart-dropdown .header button {
   margin-bottom: 1rem;
 }
 
+/* รายการสินค้า */
 nav .cart-dropdown #cart-items {
   padding: 1rem 0;
 }
@@ -203,6 +219,7 @@ nav .cart-dropdown #cart-items li {
   text-align: left;
 }
 
+/* รูปสินค้าในตะกร้า */
 nav .cart-dropdown .cart-item img {
   width: 50px;
   height: 50px;
@@ -211,8 +228,9 @@ nav .cart-dropdown .cart-item img {
   margin-right: 10px;
 }
 
+/* รายละเอียด (ชื่อ, ราคา) */
 nav .cart-dropdown .cart-item .cart-item-details {
-  flex-grow: 1;
+  flex-grow: 1; /* ขยายเต็มพื้นที่ที่เหลือ */
   text-align: left;
 }
 
@@ -221,6 +239,7 @@ nav .cart-dropdown .cart-item .cart-item-details p {
   font-size: 16px;
 }
 
+/* ปุ่มลบ (X) ท้ายรายการ */
 nav .cart-dropdown .cart-item .cart-item-remove {
   background: none;
   border: none;
@@ -229,6 +248,7 @@ nav .cart-dropdown .cart-item .cart-item-remove {
   cursor: pointer;
 }
 
+/* Footer (ราคารวม, ปุ่ม) */
 nav .cart-dropdown .footer {
   display: flex;
   align-items: center;
@@ -236,12 +256,14 @@ nav .cart-dropdown .footer {
   border-top: 1px solid #ddd;
 }
 
+/* ราคารวม */
 nav .cart-dropdown .footer #total-price {
   font-weight: bold;
   font-size: 18px;
   margin-top: 1rem;
 }
 
+/* ปุ่มล้างตะกร้า */
 nav .cart-dropdown .footer .btn .clear {
   margin-top: 1rem;
   background: none;
@@ -259,6 +281,7 @@ nav .cart-dropdown .footer .btn .clear:active {
   color: var(--secondary-color);
 }
 
+/* ปุ่มสั่งซื้อ */
 nav .cart-dropdown .footer .btn .submit {
   margin-top: 1rem;
   background: none;
@@ -280,8 +303,8 @@ nav .cart-dropdown .footer .btn .submit:active {
 
 /* ==============================================
   ส่วน Product Card ( .item )
-  ==============================================
-*/
+  (ใช้ร่วมกันในหลายหน้า)
+  ============================================== */
 .item {
   width: 100%;
   max-width: 400px;
@@ -293,14 +316,16 @@ nav .cart-dropdown .footer .btn .submit:active {
   position: relative;
   text-align: left;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* เรียงจากบนลงล่าง */
 }
 
+/* เอฟเฟกต์ "ลอย" เมื่อ hover */
 .item:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* Header ของ Card (User + Icons) */
 .item .header {
   display: flex;
   justify-content: space-between;
@@ -309,6 +334,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   width: 100%;
 }
 
+/* ข้อมูลผู้ใช้ */
 .item .header .user-info {
   display: flex;
   align-items: center;
@@ -326,7 +352,7 @@ nav .cart-dropdown .footer .btn .submit:active {
 }
 
 .item .header .user-info span {
-  font-size: var(--secondary-size); /* 16px */
+  font-size: var(--secondary-size);
   font-weight: 500;
 }
 
@@ -338,15 +364,16 @@ nav .cart-dropdown .footer .btn .submit:active {
   color: var(--primary-color);
 }
 
+/* ไอคอน (หัวใจ, ...) */
 .item .header .actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* 12px */
+  gap: 0.75rem; /* ระยะห่างระหว่างไอคอน */
 }
 
 .item .header .actions .fav,
 .item .header .actions .options {
-  font-size: 1.125rem; /* 18px */
+  font-size: 1.125rem;
   color: #aaa;
   cursor: pointer;
   transition: color 0.2s ease, transform 0.2s ease;
@@ -357,32 +384,36 @@ nav .cart-dropdown .footer .btn .submit:active {
   transform: scale(1.1);
 }
 
+/* สไตล์ไอคอนหัวใจ */
 .item .header .actions .fav:hover {
   color: var(--primary-color);
   transform: scale(1.1);
 }
 .item .header .actions .fav.is-favorited {
-  color: red;
+  color: red; /* สีแดงเมื่อถูกใจ */
 }
 
-/* ⭐️ [ใหม่] เพิ่มสไตล์สำหรับปุ่มลบ */
+/* ปุ่มลบ (ถังขยะ) */
 .item .header .actions .delete-btn {
-  color: #aaa; /* สีเทาปกติ */
+  color: #aaa;
   transition: color 0.2s ease, transform 0.2s ease;
 }
+
 .item .header .actions .delete-btn:hover {
-  color: #ff4d4d; /* สีแดงตอน hover */
+  color: #ff4d4d; /* สีแดงเมื่อ hover */
   transform: scale(1.1);
 }
 
+/* รูปสินค้า */
 .item img.productImg {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  aspect-ratio: 1 / 1; /* ทำให้เป็นสี่เหลี่ยมจัตุรัส */
+  object-fit: cover; /* รูปเต็มกรอบ (อาจโดนตัด) */
   border-radius: 8px;
   margin-bottom: 1rem;
 }
 
+/* ชื่อและราคา */
 .item p {
   margin: 0;
   padding: 0;
@@ -392,23 +423,26 @@ nav .cart-dropdown .footer .btn .submit:active {
 
 .item p.productName {
   margin-bottom: 0.5rem;
-  flex-grow: 1;
-  min-height: 2.5em;
+  flex-grow: 1; /* ดันให้ปุ่มอยู่ล่างสุด */
+  min-height: 2.5em; /* จองที่ไว้ 2 บรรทัด (กัน layout เด้ง) */
   color: #111;
 }
+
 .item p.productPrice {
   margin-bottom: 1rem;
   color: #000;
   font-weight: 600;
 }
 
+/* กลุ่มปุ่ม (ตะกร้า, แชท) */
 .item .button-group {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: auto;
+  margin-top: auto; /* ดันตัวเองไปล่างสุด */
 }
 
+/* ปุ่ม "เพิ่มลงตะกร้า" (สีอ่อน) */
 .item .add {
   border: none;
   outline: none;
@@ -416,11 +450,11 @@ nav .cart-dropdown .footer .btn .submit:active {
   font-size: var(--primary-size);
   font-weight: 500;
   cursor: pointer;
-  background-color: #fceef5;
+  background-color: #fceef5; /* สีชมพูอ่อน */
   padding: 8px;
   border-radius: 8px;
   transition: background-color 0.2s ease, color 0.2s ease;
-  flex: 1;
+  flex: 1; /* แบ่งพื้นที่เท่าๆ กัน */
   text-align: center;
 }
 
@@ -432,6 +466,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   background-color: #fadedf;
 }
 
+/* ปุ่ม "แชท" (สีเข้ม) */
 .item .buy {
   border: none;
   outline: none;
@@ -443,7 +478,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  flex: 1;
+  flex: 1; /* แบ่งพื้นที่เท่าๆ กัน */
   text-align: center;
 }
 
@@ -452,9 +487,10 @@ nav .cart-dropdown .footer .btn .submit:active {
 }
 
 /* ==============================================
-  ส่วน Chat / Messenger
-  ==============================================
-*/
+  ส่วน Chat / Messenger (Widget)
+  ============================================== */
+
+/* กล่องแชท (Popup) */
 .chat-box {
   position: fixed;
   bottom: 120px;
@@ -464,13 +500,14 @@ nav .cart-dropdown .footer .btn .submit:active {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  display: none;
+  display: none; /* ซ่อนไว้ */
   flex-direction: column;
   overflow: hidden;
   z-index: 1998;
   text-align: left;
 }
 
+/* Header ของ Widget */
 .chat-header {
   background-color: #e45a92;
   color: white;
@@ -482,6 +519,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   justify-content: space-between;
 }
 
+/* ปุ่มปิด (X) ใน Widget */
 .chat-header button {
   background-color: transparent;
   border: none;
@@ -490,14 +528,16 @@ nav .cart-dropdown .footer .btn .submit:active {
   cursor: pointer;
 }
 
+/* หน้าต่างข้อความ (ใน Widget) */
 .chat-messages {
-  flex: 1;
+  flex: 1; /* ขยายเต็มพื้นที่ */
   padding: 10px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
+/* --- Chat Bubbles --- */
 .message {
   margin: 8px 0;
   padding: 8px 12px;
@@ -505,16 +545,19 @@ nav .cart-dropdown .footer .btn .submit:active {
   max-width: 80%;
 }
 
+/* ข้อความผู้ใช้ (เรา) */
 .message.user {
   background-color: #dcf8c6;
-  align-self: flex-end;
+  align-self: flex-end; /* ชิดขวา */
 }
 
+/* ข้อความ Bot (คู่สนทนา) */
 .message.bot {
   background-color: #f1f0f0;
-  align-self: flex-start;
+  align-self: flex-start; /* ชิดซ้าย */
 }
 
+/* ช่องพิมพ์ (ใน Widget) */
 .chat-input {
   border-top: 1px solid #ddd;
   padding: 10px;
@@ -529,6 +572,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   outline: none;
 }
 
+/* ปุ่มส่ง (ใน Widget) */
 .chat-input button {
   background-color: #e45a92;
   color: white;
@@ -540,7 +584,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   cursor: pointer;
 }
 
-/* messenger */
+/* ปุ่ม Messenger (ปุ่มลอย) */
 .messenger {
   position: fixed;
   bottom: 30px;
@@ -563,8 +607,9 @@ nav .cart-dropdown .footer .btn .submit:active {
   color: rgb(229, 99, 149);
 }
 
+/* --- Toast Notification (กล่องแจ้งเตือน) --- */
 #textBox {
-  visibility: hidden;
+  visibility: hidden; /* ซ่อน */
   min-width: 250px;
   background-color: #333;
   color: #fff;
@@ -581,6 +626,7 @@ nav .cart-dropdown .footer .btn .submit:active {
   transition: opacity 0.5s, bottom 0.5s;
 }
 
+/* คลาสที่ JS เพิ่มเข้ามาเพื่อ "โชว์" */
 #textBox.show {
   visibility: visible;
   opacity: 1;
@@ -588,31 +634,32 @@ nav .cart-dropdown .footer .btn .submit:active {
 }
 
 /* ==============================================
-  [ใหม่] สไตล์สำหรับ User Dropdown Menu (Mockup)
+  ส่วน User Dropdown Menu (หลัง Login)
 ============================================== */
 .nav-user-menu {
-  position: relative; /* เป็น Container ให้กับ dropdown */
+  position: relative; /* เป็น Container ให้ dropdown */
 }
 
 .dropdown-menu {
-  display: none; /* ซ่อนไว้เป็นค่าเริ่มต้น */
+  display: none; /* ซ่อนไว้ */
   position: absolute;
-  top: 100%; /* อยู่ใต้ปุ่มหลัก */
+  top: 100%; /* อยู่ใต้ปุ่ม */
   right: 0;
   background-color: #ffff;
   min-width: 180px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  z-index: 1001; /* อยู่ทับทุกอย่าง */
-  overflow: hidden; /* สำหรับขอบมน */
-  margin-top: 10px; /* เว้นระยะเล็กน้อย */
+  z-index: 1001;
+  overflow: hidden;
+  margin-top: 10px;
 }
 
-/* คลาสนี้จะถูกเพิ่มโดย JavaScript เพื่อโชว์เมนู */
+/* คลาสที่ JS เพิ่มเพื่อโชว์ */
 .dropdown-menu.show {
   display: block;
 }
 
+/* เปลี่ยนสีลิงก์ใน dropdown */
 .dropdown-menu.show li a {
   color: #000;
 }
@@ -622,19 +669,19 @@ nav .cart-dropdown .footer .btn .submit:active {
 }
 
 .dropdown-menu li {
-  margin-right: 0; /* ล้างค่า margin จาก .menu_2 li */
+  margin-right: 0;
 }
 
 .dropdown-menu li a {
   display: block;
   padding: 12px 16px;
   font-size: 16px;
-  color: #333; /* สีตัวอักษรสีดำ */
+  color: #333;
   font-weight: 500;
-  white-space: nowrap; /* ไม่ให้ขึ้นบรรทัดใหม่ */
+  white-space: nowrap; /* ไม่ให้ข้อความตกบรรทัด */
 }
 
-/* ล้างขีดเส้นใต้ของ Navbar */
+/* ล้างขีดเส้นใต้ (ที่มาจาก Navbar) */
 .dropdown-menu li a::after {
   display: none;
 }
@@ -644,7 +691,8 @@ nav .cart-dropdown .footer .btn .submit:active {
   color: var(--primary-color);
 }
 
+/* จัดไอคอนให้ตรงกัน */
 .dropdown-menu li a i {
   margin-right: 10px;
-  width: 16px; /* จัดไอคอนให้ตรงกัน */
+  width: 16px;
 }

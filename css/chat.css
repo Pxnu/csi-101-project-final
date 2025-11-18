@@ -1,173 +1,184 @@
-/* ⭐️ สไตล์สำหรับหน้าแชทโดยเฉพาะ */
+/* สไตล์สำหรับหน้า Chat.html (หน้าแชทเต็มจอ) */
+
 body {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
+/* กล่องหลักครอบซ้าย-ขวา */
 .chat-page-container {
-    max-width: 1320px;
-    margin: 20px auto;
-    display: flex;
-    height: calc(100vh - 120px); /* (100% - Navbar - padding) */
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    overflow: hidden; /* บังคับขอบมน */
+  max-width: 1320px;
+  margin: 20px auto;
+  display: flex; /* แบ่ง 2 ฝั่ง */
+  height: calc(100vh - 120px); /* ความสูง (100% - Navbar - padding) */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
 }
 
 /* 1. ส่วนรายชื่อ (ซ้าย) */
 .contact-list {
-    width: 30%;
-    min-width: 250px;
-    border-right: 1px solid #eee;
-    display: flex;
-    flex-direction: column;
+  width: 30%;
+  min-width: 250px;
+  border-right: 1px solid #eee; /* เส้นแบ่ง */
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-header {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
 }
 
 .contact-header h3 {
-    font-size: 20px;
-    color: #333;
+  font-size: 20px;
+  color: #333;
 }
 
+/* ทำให้รายชื่อ scroll ได้ */
 .contacts {
-    overflow-y: auto;
-    flex: 1;
+  overflow-y: auto;
+  flex: 1; /* ใช้พื้นที่ที่เหลือ */
 }
 
+/* รายชื่อแต่ละคน */
 .contact-item {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
 }
+
 .contact-item:hover {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
+
+/* เมื่อรายชื่อถูกเลือก */
 .contact-item.active {
-    background-color: var(--primary-light, #fceef5);
+  background-color: var(--primary-light, #fceef5);
 }
 
 .contact-item img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
 }
 
+/* ข้อมูล (ชื่อ, พรีวิว) */
 .contact-info {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* ป้องกันข้อความทะลุ */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* ป้องกันข้อความทะลุ */
 }
 
+/* ชื่อ (ตัดข้อความยาว) */
 .contact-name {
-    font-weight: 600;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* พรีวิวแชท (ตัดข้อความยาว) */
 .contact-preview {
-    font-size: 14px;
-    color: #777;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 14px;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 
 /* 2. ส่วนหน้าต่างแชท (ขวา) */
 .chat-window {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Header (แสดงชื่อคนที่เราคุยด้วย) */
 .chat-header-main {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
-    background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  background-color: #fafafa;
 }
 
 .chat-header-main img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
 }
 
 .chat-header-main span {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
 }
 
-/* ⭐️ เราดึงสไตล์ .message จาก Global.css มาใช้ 
-   แต่เราจะปรับแต่ง container ของมันเล็กน้อย */
-
+/* หน้าต่างข้อความ */
 #chat-page-messages {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    background-color: #fff;
-    display: flex; /* ⭐️ [แก้ไข] เพิ่ม flex */
-    flex-direction: column; /* ⭐️ [แก้ไข] เพิ่ม flex-direction */
+  flex: 1; /* ใช้พื้นที่ที่เหลือ */
+  padding: 20px;
+  overflow-y: auto; /* scroll ได้ */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column; /* เรียงข้อความจากบนลงล่าง */
 }
 
+/* ขยายความกว้าง bubble (ใช้ .message จาก global.css) */
 #chat-page-messages .message {
-    max-width: 60%; /* ให้ข้อความกว้างขึ้นเล็กน้อย */
+  max-width: 60%;
 }
 
-
-/* ⭐️ เราดึงสไตล์ .chat-input จาก Global.css มาใช้ 
-   แต่เราจะปรับแต่ง container ของมันเล็กน้อย */
+/* พื้นที่พิมพ์ข้อความ */
 #chat-page-input-area {
-    border-top: 1px solid #eee;
-    padding: 20px;
-    display: flex;
-    background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+  padding: 20px;
+  display: flex;
+  background-color: #f9f9f9;
 }
 
+/* ช่องพิมพ์ */
 #chat-page-input-area input {
-    flex: 1;
-    padding: 12px 15px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    outline: none;
-    font-size: 16px;
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 16px;
 }
+
 #chat-page-input-area input:focus {
-    border-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
+/* ปุ่มส่ง (วงกลม) */
 #chat-page-input-area button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: background-color 0.2s;
-}
-#chat-page-input-area button:hover {
-    background-color: #d14e85;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.2s;
 }
 
-/* ⭐️ ซ่อนปุ่มแชท Popup เมื่ออยู่ในหน้าแชท */
+#chat-page-input-area button:hover {
+  background-color: #d14e85;
+}
+
+/* ซ่อนปุ่มแชท (Widget) ในหน้านี้ */
 body .messenger {
-    display: none;
+  display: none;
 }

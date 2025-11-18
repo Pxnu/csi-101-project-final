@@ -1,30 +1,36 @@
-// 1. ⭐️ [แก้ไข] เปลี่ยนสินค้าเริ่มต้นเป็นอาร์เรย์ว่าง
-const initialProducts = [
-  // (สินค้า Mockup 15 ชิ้นถูกลบออกจากตรงนี้แล้ว)
-];
+// 1. กำหนดค่าเริ่มต้นของสินค้าเป็นอาร์เรย์ว่าง
+// (เมื่อผู้ใช้ลงขาย, สินค้าจะถูกเพิ่มเข้ามาใน localStorage)
+const initialProducts = [];
 
 // 2. Key สำหรับเก็บข้อมูลใน localStorage
-const SAMPLE_KEY = "favorites";
-const CART_KEY = "shoppingCart";
-const PRODUCTS_KEY = "allSiteProducts"; // Key สำหรับเก็บสินค้า
+const SAMPLE_KEY = "favorites";      // Key สำหรับเก็บสินค้าที่ถูกใจ
+const CART_KEY = "shoppingCart";   // Key สำหรับเก็บสินค้าในตะกร้า
+const PRODUCTS_KEY = "allSiteProducts"; // Key สำหรับเก็บสินค้าทั้งหมด
 
-// 3. ฟังก์ชันสำหรับโหลดสินค้าทั้งหมด
+/**
+ * ฟังก์ชันสำหรับโหลดสินค้าทั้งหมดจาก localStorage
+ * @returns {Array} - อาร์เรย์ของสินค้าทั้งหมด
+ */
 function loadAllProducts() {
   try {
     const rawProducts = localStorage.getItem(PRODUCTS_KEY);
+    // ตรวจสอบว่ามีข้อมูลใน localStorage และไม่ใช่แค่ "[]" (อาร์เรย์ว่าง)
     if (rawProducts && rawProducts.length > 2) {
-      // ถ้ามีสินค้าใน localStorage อยู่แล้ว ก็ใช้ข้อมูลนั้น
+      // ถ้ามี, ใช้ข้อมูลนั้น
       return JSON.parse(rawProducts);
     } else {
-      // ถ้าเป็นผู้ใช้ครั้งแรก: บันทึกอาร์เรย์ว่างเปล่าลง localStorage
+      // ถ้าไม่มี (เช่น ใช้งานครั้งแรก)
+      // ให้บันทึกอาร์เรย์ว่างเปล่า (initialProducts) ลง localStorage
       localStorage.setItem(PRODUCTS_KEY, JSON.stringify(initialProducts));
       return initialProducts;
     }
   } catch (err) {
     console.error("Error loading products:", err);
-    return initialProducts; // ถ้าพัง ให้ใช้สินค้าเริ่มต้น (อาร์เรย์ว่าง)
+    // ถ้าเกิด Error (เช่น JSON ผิดพลาด), ให้คืนค่าอาร์เรย์ว่าง
+    return initialProducts;
   }
 }
 
-// 4. ⭐️ นี่คือตัวแปรหลักที่ไฟล์อื่น (Home.js, Products.js) จะใช้
+// 4. สร้างตัวแปร global 'allProducts'
+// นี่คือตัวแปรหลักที่ไฟล์อื่น (Home.js, Products.js) จะใช้อ้างอิง
 const allProducts = loadAllProducts();
