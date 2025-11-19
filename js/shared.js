@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       // ใช้ confirm เพื่อยืนยันก่อนออกจากระบบ
       if (confirm("ต้องการออกจากระบบใช่หรือไม่")) {
-        window.location.href = "/login.html"; // ไปยังหน้า login
+        window.location.href = "/index.html"; // ไปยังหน้า login
       }
     });
   }
